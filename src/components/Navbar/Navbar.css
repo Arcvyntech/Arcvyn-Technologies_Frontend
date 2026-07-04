@@ -1,0 +1,195 @@
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:999;
+
+    padding:18px 0;
+
+    background:rgba(5,7,13,.55);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+.nav-container{
+
+    width:90%;
+
+    max-width:1280px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+/* ============================= */
+/* LOGO */
+/* ============================= */
+
+.logo{
+
+    text-decoration:none;
+
+    font-size:30px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+
+    color:white;
+
+    letter-spacing:1px;
+
+}
+
+.logo span{
+
+    color:var(--gold-500);
+
+}
+
+/* ============================= */
+/* LINKS */
+/* ============================= */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    list-style:none;
+
+}
+
+.nav-links a{
+
+    position:relative;
+
+    color:var(--text-secondary);
+
+    text-decoration:none;
+
+    transition:.35s;
+
+    font-weight:500;
+
+}
+
+.nav-links a:hover{
+
+    color:white;
+
+}
+
+/* underline animation */
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    border-radius:10px;
+
+    background:var(--gold-500);
+
+    transition:.35s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+/* Active Route */
+
+.nav-links a.active{
+
+    color:white;
+
+}
+
+.nav-links a.active::after{
+
+    width:100%;
+
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.nav-btn{
+
+    text-decoration:none;
+
+    padding:14px 26px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+    135deg,
+    var(--gold-500),
+    var(--gold-600));
+
+    color:#111;
+
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:var(--glow-gold);
+
+}
+
+.nav-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+}

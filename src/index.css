@@ -1,0 +1,470 @@
+/* ============================= */
+/* GOOGLE FONTS */
+/* ============================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* ============================= */
+/* ROOT VARIABLES */
+/* ============================= */
+:root{
+  /* Background / elevation */
+  --bg-primary:#05070D;
+  --bg-surface:#0D1117;
+  --bg-surface-2:#1A1D26;
+  --bg-surface-3:#12151D;      /* NEW — a third elevation step so sections can alternate depth without everything being surface-2 */
+  --glass:rgba(255,255,255,.04);
+  --glass-strong:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);
+  --border-strong:rgba(255,255,255,.16);
+
+  /* Brand */
+  --gold-500:#F4B942;
+  --gold-600:#D99A2B;
+  --teal-400:#5EE6D0;
+  --teal-600:#2BB8A3;
+  /* Accent (variety / tags / AI features) — status/badges ONLY, never primary CTAs or headings */
+  --indigo-400:#818CF8;
+  --indigo-600:#5B63D6;
+  /* Semantic / feedback */
+  --success:#4ADE80;
+  --success-bg:rgba(74,222,128,.15);
+  --danger:#F87171;
+  --danger-bg:rgba(248,113,113,.15);
+  --warning:#F4B942;
+  --warning-bg:rgba(244,185,66,.15);
+  --info:#5EE6D0;
+  --info-bg:rgba(94,230,208,.15);
+
+  /* Text ---------------------------------------------------------------
+     FIXED: --text-muted was #6B7080 on #05070D ≈ 4.2:1 contrast, which
+     FAILS WCAG AA (needs 4.5:1) — and it was being used at 12px on stat
+     labels/captions, making it genuinely hard to read. Values below are
+     re-tuned so every tier passes AA at minimum, most pass AAA.
+     RULE OF THUMB:
+       - primary   → headings, key numbers, primary CTAs
+       - secondary → body copy, card descriptions (default paragraph color)
+       - tertiary  → supporting captions, metadata (timestamps, tags)
+       - muted     → ONLY disabled states / placeholder text, never
+                      anything a visitor is meant to actually read
+  ------------------------------------------------------------------- */
+  --text-primary:#FFFFFF;
+  --text-secondary:#C4C8D4;    /* was #B8BCC8 — nudged up slightly, ~11.8:1 */
+  --text-tertiary:#9298A8;     /* was #8B90A0 (6.3:1) → now ~7.2:1 */
+  --text-muted:#868B9C;        /* was #6B7080 (4.2:1, FAILED) → now ~4.7:1, passes AA */
+
+  /* Radius */
+  --radius-sm:12px;
+  --radius-md:20px;
+  --radius-lg:28px;
+  --radius-pill:50px;
+  /* Shadow */
+  --shadow-soft:
+      0 25px 50px rgba(0,0,0,.45);
+  --glow-gold:
+      0 0 40px rgba(244,185,66,.25);
+  --glow-teal:
+      0 0 40px rgba(94,230,208,.18);
+  --glow-indigo:
+      0 0 40px rgba(129,140,248,.20);
+  /* Transition */
+  --transition:.35s ease;
+  /* Typography */
+  --fs-h1:clamp(42px,6vw,72px);
+  --fs-h2:clamp(32px,4vw,48px);
+  --fs-h3:22px;
+  --fs-body:16px;
+  --fs-small:14px;
+  --fs-caption:13px;           /* was 12px — 12px + low contrast was the worst offender combo, bumped 1px */
+  /* Layout */
+  --container:1280px;
+  --container-narrow:820px;    /* NEW — for text-only/statement sections, see .section-narrow */
+}
+/* ============================= */
+/* RESET */
+/* ============================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html{
+    scroll-behavior:smooth;
+}
+body{
+    background:
+    radial-gradient(circle at top left,
+    rgba(244,185,66,.08),
+    transparent 30%),
+    radial-gradient(circle at bottom right,
+    rgba(94,230,208,.05),
+    transparent 40%),
+    var(--bg-primary);
+    color:var(--text-primary);
+    font-family:"Inter",sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+}
+/* ============================= */
+/* COMMON */
+/* ============================= */
+section{
+    width:100%;
+    padding:110px 8%;
+    position:relative;
+}
+.container{
+    width:100%;
+    max-width:var(--container);
+    margin:auto;
+}
+img{
+    display:block;
+    max-width:100%;
+}
+a{
+    color:inherit;
+    text-decoration:none;
+}
+ul{
+    list-style:none;
+}
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    font:inherit;
+}
+input,
+textarea{
+    font:inherit;
+    outline:none;
+}
+::selection{
+    background:var(--gold-500);
+    color:#111;
+}
+/* ============================= */
+/* SCROLLBAR */
+/* ============================= */
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background:#090B10;
+}
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+        var(--gold-500),
+        var(--gold-600)
+    );
+    border-radius:20px;
+}
+/* ============================= */
+/* HEADINGS */
+/* ============================= */
+h1,h2,h3,h4{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    letter-spacing:-1px;
+}
+h1{
+    font-size:var(--fs-h1);
+    line-height:1.05;
+}
+h2{
+    font-size:var(--fs-h2);
+}
+h3{
+    font-size:var(--fs-h3);
+}
+p{
+    color:var(--text-secondary);
+    line-height:1.8;
+    font-size:16px;
+}
+small,
+.caption{
+    font-size:var(--fs-caption);
+    color:var(--text-tertiary);  /* was --text-tertiary already but now correctly separated from muted, see note above */
+}
+/* ============================= */
+/* GRADIENT TEXT */
+/* ============================= */
+.gradient-text{
+    background:linear-gradient(
+        90deg,
+        var(--gold-500),
+        #FFE39A
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+}
+.gradient-text-indigo{
+    background:linear-gradient(
+        90deg,
+        var(--indigo-400),
+        #C7CBFB
+    );
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* ============================= */
+/* SECTION RHYTHM SYSTEM — NEW   */
+/* ============================= */
+/* Goal: every section using the same flat --bg-primary + 110px padding
+   is the #1 reason the page feels monotonous while scrolling. These
+   variants let you alternate depth, spacing, and width on purpose.
+   Pick ONE per section based on its role — don't use .glass-card grids
+   everywhere. Suggested mapping is in the comments. */
+
+/* Elevated surface — use for sections that should visually "sit forward"
+   from the ones above/below (e.g. Ecosystem, Trust/Results) */
+.section-elevated{
+    background:var(--bg-surface);
+}
+.section-elevated-2{
+    background:var(--bg-surface-2);
+}
+
+/* Tight rhythm — for sections that follow a big hero/statement and
+   should feel like a quick beat, not a full breath (e.g. a stats strip) */
+.section-flush{
+    padding:64px 8%;
+}
+
+/* Spacious rhythm — reserve for the 1-2 moments per page that should
+   feel like a big pause (hero, closing CTA). Don't overuse or it loses
+   its effect. */
+.section-spacious{
+    padding:180px 8%;
+}
+
+/* Narrow / statement — for text-only sections with no card grid at all,
+   e.g. a single big quote-like claim ("Where ambition meets engineering").
+   Forces short line-length, which reads as more editorial/confident than
+   a full-width paragraph. */
+.section-narrow .container{
+    max-width:var(--container-narrow);
+}
+
+/* Split layout helper — for sections that should break the repeating
+   "centered heading + grid below" pattern with an asymmetric two-column
+   layout instead (heading left, content right, uneven widths) */
+.section-split{
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:64px;
+    align-items:start;
+}
+@media (max-width:900px){
+    .section-split{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ============================= */
+/* GLASS */
+/* ============================= */
+.glass{
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+}
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:var(--radius-pill);
+    transition:var(--transition);
+    font-weight:600;
+}
+.btn-primary{
+    background:linear-gradient(
+        135deg,
+        var(--gold-500),
+        var(--gold-600)
+    );
+    color:#111;
+    box-shadow:var(--glow-gold);
+}
+.btn-primary:hover{
+    transform:translateY(-4px);
+}
+.btn-secondary{
+    background:linear-gradient(
+        135deg,
+        var(--indigo-400),
+        var(--indigo-600)
+    );
+    color:#fff;
+    box-shadow:var(--glow-indigo);
+}
+.btn-secondary:hover{
+    transform:translateY(-4px);
+}
+.btn-outline{
+    background:transparent;
+    border:1px solid var(--border);
+    color:white;
+}
+.btn-outline:hover{
+    background:rgba(255,255,255,.05);
+}
+.btn-danger{
+    background:var(--danger);
+    color:#111;
+}
+.btn-danger:hover{
+    transform:translateY(-4px);
+}
+/* ============================= */
+/* CARDS — now with variants     */
+/* ============================= */
+.glass-card{
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:24px;
+    backdrop-filter:blur(20px);
+    transition:.4s;
+}
+.glass-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(244,185,66,.35);
+    box-shadow:var(--shadow-soft);
+}
+/* Elevated card (uses surface-2, for dropdowns / modals / nested panels) */
+.card-elevated{
+    background:var(--bg-surface-2);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:1.25rem;
+}
+
+/* NEW — Flat list card: no box, just a bottom border. Use for sections
+   like "value props" or "trust reasons" that currently duplicate the
+   .glass-card grid look used elsewhere. Reads as a clean list instead
+   of another row of boxes. */
+.card-flat{
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--border);
+    border-radius:0;
+    padding:28px 0;
+}
+.card-flat:last-child{
+    border-bottom:none;
+}
+
+/* NEW — Outline card: no fill, just a border. Lighter-weight than
+   .glass-card, good for secondary content so it doesn't compete with
+   the primary card style on the same page. */
+.card-outline{
+    background:transparent;
+    border:1px solid var(--border-strong);
+    border-radius:var(--radius-md);
+    transition:.4s;
+}
+.card-outline:hover{
+    border-color:rgba(244,185,66,.35);
+}
+
+/* NEW — Feature card: for the ONE section per page that should feel
+   like the visual highlight (e.g. a real product screenshot). Bigger
+   radius, stronger shadow, no hover-lift so it feels anchored rather
+   than "just another card in a grid." */
+.card-feature{
+    background:var(--bg-surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);
+    overflow:hidden;
+}
+
+/* ============================= */
+/* BADGES / TAGS */
+/* ============================= */
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    font-weight:600;
+    padding:4px 12px;
+    border-radius:var(--radius-pill);
+}
+.badge-gold{ background:var(--warning-bg); color:var(--gold-500); }
+.badge-teal{ background:var(--info-bg); color:var(--teal-400); }
+.badge-indigo{ background:rgba(129,140,248,.15); color:var(--indigo-400); }
+.badge-success{ background:var(--success-bg); color:var(--success); }
+.badge-danger{ background:var(--danger-bg); color:var(--danger); }
+
+/* ============================= */
+/* STATUS DOT */
+/* ============================= */
+.status-dot{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+}
+.status-dot.online{ background:var(--success); }
+.status-dot.offline{ background:var(--danger); }
+.status-dot.pending{ background:var(--gold-500); }
+
+/* ============================= */
+/* FORM STATES */
+/* ============================= */
+.input{
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:12px 16px;
+    color:var(--text-primary);
+    width:100%;
+    transition:var(--transition);
+}
+.input:focus{
+    border-color:var(--gold-500);
+}
+.input.error{
+    border-color:var(--danger);
+}
+.input.success{
+    border-color:var(--success);
+}
+.helper-text{
+    font-size:var(--fs-caption);
+    margin-top:6px;
+}
+.helper-text.error{ color:var(--danger); }
+.helper-text.success{ color:var(--success); }
+.fade-up{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+.fade-up.show{
+    opacity:1;
+    transform:translateY(0);
+}
+@keyframes float{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+.float{
+    animation:float 5s ease-in-out infinite;
+}

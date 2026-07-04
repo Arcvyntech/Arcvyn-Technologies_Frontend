@@ -1,0 +1,50 @@
+.footer {
+  background-color: var(--mahogany); /* Palette color for dark theme */
+  color: var(--vanilla);
+  padding: 80px 8% 30px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand h2 {
+  color: var(--vanilla);
+  margin: 0;
+}
+
+.footer-brand p {
+  margin-top: 20px;
+  color: var(--sand); /* Softer text color */
+  line-height: 1.7;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.footer-links a:hover {
+  color: var(--tobacco);
+}
+
+.footer-bottom {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--mountain);
+  text-align: center;
+  color: var(--sand);
+}

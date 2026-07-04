@@ -1,0 +1,480 @@
+.careers{
+  background:var(--bg-primary);
+  padding:110px 0;
+  color:var(--text-primary);
+}
+
+/* HEADER */
+.careers-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  margin-bottom:60px;
+  flex-wrap:wrap;
+}
+
+.careers-header h2{
+  font-size:var(--fs-h2);
+  margin-top:10px;
+}
+
+.careers-header p{
+  color:var(--text-secondary);
+  max-width:420px;
+  line-height:1.7;
+  margin-top:16px;
+}
+
+/* EYEBROW */
+.eyebrow{
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold-500);
+}
+
+/* STATS */
+.careers-stats{
+  display:flex;
+  gap:0;
+}
+
+.careers-stat{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:0 28px;
+  border-left:1px solid var(--border);
+}
+
+.careers-stat:first-child{
+  padding-left:0;
+  border-left:none;
+}
+
+.careers-stat strong{
+  font-size:1.8rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  color:var(--gold-500);
+}
+
+/* CHANGE: accent variant so not every stat number is gold —
+   small color break keeps the header from feeling monotone. */
+.careers-stat-accent strong{
+  color:var(--teal-400, #5ee6d0);
+}
+
+.careers-stat span{
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* SECTION TITLE */
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:18px;
+  margin: 64px 0 24px;
+  color:var(--text-primary);
+}
+
+.section-title:first-of-type{
+  margin-top:0;
+}
+
+.section-icon{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  color:var(--gold-500);
+  background:rgba(244,185,66,.1);
+}
+
+.section-icon svg{
+  width:15px;
+  height:15px;
+}
+
+.section-sub{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.7;
+  max-width:560px;
+  margin-bottom:24px;
+}
+
+/* LIST */
+.career-list{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:var(--radius-lg);
+  margin-bottom: 56px; /* Added margin here so the next section title stays spaced out */
+}
+
+/* ROW */
+.career-row{
+  display:grid;
+  grid-template-columns:40px 1.5fr 1fr auto;
+  align-items:center;
+  gap:20px;
+  padding:22px 26px;
+  text-decoration:none;
+  transition:var(--transition);
+  border-bottom:1px solid var(--border);
+  border-left:2px solid transparent; /* reserved so featured rows don't shift layout on hover */
+}
+
+.career-row:last-child{
+  border-bottom:none;
+}
+
+.career-row:hover{
+  background:var(--glass);
+  transform:translateY(-2px);
+}
+
+/* CHANGE: one role stands out from the flat repeated-row pattern —
+   teal left border + tinted background, like a "hot role" callout. */
+.career-row-featured{
+  border-left-color: var(--teal-400, #5ee6d0);
+  background: rgba(94,230,208,.04);
+}
+
+.career-row-featured:hover{
+  background: rgba(94,230,208,.07);
+}
+
+/* INDEX */
+.career-index{
+  color:var(--text-muted);
+  font-size:12px;
+}
+
+/* MAIN */
+.career-main h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.career-main{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.career-main h3{
+  flex-basis:100%;
+}
+
+.career-tag{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(244,185,66,.1);
+  color:var(--gold-500);
+  display:inline-block;
+}
+
+.career-tag-accent{
+  background:rgba(94,230,208,.14);
+  color:var(--teal-400, #5ee6d0);
+}
+
+.career-badge{
+  font-size:11px;
+  font-weight:600;
+  color:var(--teal-400, #5ee6d0);
+}
+
+/* META */
+.career-meta{
+  font-size:13px;
+  color:var(--text-secondary);
+}
+
+/* APPLY */
+.career-apply{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--gold-500);
+  font-weight:600;
+  font-size:13px;
+}
+
+.career-apply svg{
+  width:14px;
+  height:14px;
+}
+
+/* REMOTE STRIP */
+.remote-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom: 48px; /* Extra room so 'Apply Now' has clear breathing space */
+}
+
+.remote-chip{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--glass);
+  color:var(--text-primary);
+  font-size:13px;
+  text-decoration:none;
+  transition:var(--transition);
+  cursor:pointer;
+}
+
+.remote-chip:hover{
+  border-color:var(--gold-500);
+  transform:translateY(-2px);
+}
+
+.remote-chip-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--teal-400, #5ee6d0);
+  flex-shrink:0;
+}
+
+/* APPLICATION FORM */
+.application-grid{
+  display:grid;
+  grid-template-columns:0.85fr 1.15fr;
+  gap:0;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+
+.application-info{
+  padding:44px;
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:16px;
+}
+
+.application-info h3{
+  font-size:22px;
+  line-height:1.3;
+}
+
+.application-info p{
+  color:var(--text-secondary);
+  line-height:1.7;
+}
+
+.application-info .btn{
+  align-self:flex-start;
+}
+
+.app-form{
+  padding:44px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.form-group label{
+  font-size:12px;
+  letter-spacing:0.05em;
+  color:var(--text-muted);
+}
+
+/* CHANGE: dropped !important here — .form-group input/select/textarea is
+   already specific enough to win without it, and removing it makes future
+   overrides (e.g. an error state) possible without a specificity fight. */
+.form-group input,
+.form-group select,
+.form-group textarea{
+  background: rgba(255, 255, 255, 0.03);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  color:var(--text-primary);
+  font-size:14px;
+  font-family:inherit;
+  transition:var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  outline:none;
+  border-color:var(--gold-500);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Hard reset for select options styling */
+.form-group select option {
+  background-color: var(--bg-secondary, #141519);
+  color: var(--text-primary, #ffffff);
+}
+
+/* Bulletproof Autofill Override
+   CHANGE: swapped the hardcoded #141519 for var(--bg-secondary, #141519) —
+   if the theme's surface color ever changes, this now follows it instead
+   of silently going out of sync and showing a mismatched autofill box. */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group textarea:-webkit-autofill,
+.form-group select:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-primary, #ffffff);
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-secondary, #141519) inset;
+  box-shadow: 0 0 0px 1000px var(--bg-secondary, #141519) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group textarea{
+  resize:vertical;
+  min-height:96px;
+}
+
+.file-input{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  overflow:hidden;
+}
+
+.file-input-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px dashed var(--border);
+  border-radius:10px;
+  color:var(--text-secondary);
+  font-size:13px;
+  cursor:pointer;
+  transition:var(--transition);
+}
+
+.file-input-label:hover{
+  border-color:var(--gold-500);
+  color:var(--text-primary);
+}
+
+.file-input-label svg{
+  width:16px;
+  height:16px;
+  flex-shrink:0;
+  color:var(--gold-500);
+}
+
+.form-submit{
+  align-self:flex-start;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+}
+
+.form-submit svg{
+  width:14px;
+  height:14px;
+}
+
+/* SUCCESS STATE */
+.form-success{
+  padding:44px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.form-success-icon{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(244,185,66,.1);
+  color:var(--gold-500);
+  margin-bottom:6px;
+}
+
+.form-success-icon svg{
+  width:20px;
+  height:20px;
+}
+
+.form-success h4{
+  font-size:18px;
+}
+
+.form-success p{
+  color:var(--text-secondary);
+  line-height:1.6;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .careers-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .career-row{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .application-grid{
+    grid-template-columns:1fr;
+  }
+
+  .application-info{
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+
+  .form-row{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:560px){
+  .careers-stats{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .careers-stat{
+    padding:0 12px;
+  }
+}
