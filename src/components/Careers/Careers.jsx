@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./Careers.css";
 
+const CAREERS_API_URL =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL)
+    ? `${import.meta.env.VITE_API_URL}/careers`
+    : "http://localhost:5000/api/contact/careers";
+
 /* ── Icons ─────────────────────────────────────────────── */
 const ArrowIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -142,7 +147,7 @@ export default function Careers() {
     const formData = new FormData(e.target);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact/careers", {
+      const res = await fetch(CAREERS_API_URL, {
         method: "POST",
         body: formData,
       });
