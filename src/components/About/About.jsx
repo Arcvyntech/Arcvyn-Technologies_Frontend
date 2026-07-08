@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./about.css";
+import "./About.css";
 
 const PILLARS = [
   {
