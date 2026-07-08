@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ServicesPage.css';
 
+const API_URL =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
+  "http://localhost:5000/api/contact";
+
 const services = [
   {
     index: '01',
@@ -206,8 +210,8 @@ const ServicesPage = () => {
       message: formData.get('message'),
     };
 
-    try {
-      const res = await fetch('http://localhost:5000/api/contact', {
+       try {
+      const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
