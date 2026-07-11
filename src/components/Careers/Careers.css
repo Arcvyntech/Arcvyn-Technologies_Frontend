@@ -4,6 +4,25 @@
   color:var(--text-primary);
 }
 
+/* CHANGE: dedicated wrapper instead of the shared ".container" class.
+   The hero/stats section above gets its side gaps from its own container
+   rule; this section was inheriting a differently-scoped ".container"
+   (or fighting it), so gaps didn't line up. Giving Careers its own
+   max-width + gutter makes it match the section above regardless of
+   what any other file defines. Tweak max-width/padding below if your
+   real container uses different numbers. */
+.careers-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 40px;
+}
+
+@media(max-width:560px){
+  .careers-container{
+    padding:0 20px;
+  }
+}
+
 /* HEADER */
 .careers-header{
   display:flex;
@@ -60,7 +79,7 @@
   color:var(--gold-500);
 }
 
-/* CHANGE: accent variant so not every stat number is gold —
+/* accent variant so not every stat number is gold —
    small color break keeps the header from feeling monotone. */
 .careers-stat-accent strong{
   color:var(--teal-400, #5ee6d0);
@@ -118,7 +137,7 @@
   flex-direction:column;
   overflow:hidden;
   border-radius:var(--radius-lg);
-  margin-bottom: 56px; /* Added margin here so the next section title stays spaced out */
+  margin-bottom: 56px;
 }
 
 /* ROW */
@@ -131,7 +150,7 @@
   text-decoration:none;
   transition:var(--transition);
   border-bottom:1px solid var(--border);
-  border-left:2px solid transparent; /* reserved so featured rows don't shift layout on hover */
+  border-left:2px solid transparent;
 }
 
 .career-row:last-child{
@@ -143,8 +162,6 @@
   transform:translateY(-2px);
 }
 
-/* CHANGE: one role stands out from the flat repeated-row pattern —
-   teal left border + tinted background, like a "hot role" callout. */
 .career-row-featured{
   border-left-color: var(--teal-400, #5ee6d0);
   background: rgba(94,230,208,.04);
@@ -223,7 +240,7 @@
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-bottom: 48px; /* Extra room so 'Apply Now' has clear breathing space */
+  margin-bottom: 48px;
 }
 
 .remote-chip{
@@ -311,9 +328,6 @@
   color:var(--text-muted);
 }
 
-/* CHANGE: dropped !important here — .form-group input/select/textarea is
-   already specific enough to win without it, and removing it makes future
-   overrides (e.g. an error state) possible without a specificity fight. */
 .form-group input,
 .form-group select,
 .form-group textarea{
@@ -335,16 +349,11 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Hard reset for select options styling */
 .form-group select option {
   background-color: var(--bg-secondary, #141519);
   color: var(--text-primary, #ffffff);
 }
 
-/* Bulletproof Autofill Override
-   CHANGE: swapped the hardcoded #141519 for var(--bg-secondary, #141519) —
-   if the theme's surface color ever changes, this now follows it instead
-   of silently going out of sync and showing a mismatched autofill box. */
 .form-group input:-webkit-autofill,
 .form-group input:-webkit-autofill:hover,
 .form-group input:-webkit-autofill:focus,
@@ -476,5 +485,80 @@
 
   .careers-stat{
     padding:0 12px;
+  }
+}
+@media (max-width:560px){
+  .careers{
+    padding:70px 0;
+  }
+  .section-title{
+    margin:44px 0 18px;
+    font-size:16px;
+  }
+  .application-info{
+    padding:28px 24px;
+  }
+  .app-form{
+    padding:28px 24px;
+  }
+  .career-row{
+    padding:18px 20px;
+  }
+  .careers-header{
+    margin-bottom:40px;
+  }
+}
+
+/* ============================================================
+   MOBILE ROW HIERARCHY — makes the stacked row scannable instead
+   of everything reading at the same visual weight. Title becomes
+   the clear anchor, tag+meta form a quieter secondary line, and
+   Apply moves into the corner so it reads as an action, not just
+   another line of stacked text.
+   ============================================================ */
+@media(max-width:900px){
+  .career-row{
+    position:relative;
+    padding-right:76px;
+    align-items:start;
+  }
+
+  .career-index{
+    font-size:11px;
+    opacity:0.6;
+  }
+
+  .career-main h3{
+    font-size:17px;
+  }
+
+  .career-main{
+    gap:8px;
+  }
+
+  .career-meta{
+    font-size:12px;
+    opacity:0.75;
+  }
+
+  .career-apply{
+    position:absolute;
+    top:20px;
+    right:22px;
+    background:rgba(244,185,66,.1);
+    border-radius:999px;
+    padding:6px 12px;
+    font-size:12px;
+  }
+}
+
+@media(max-width:560px){
+  .career-row{
+    padding-right:64px;
+  }
+
+  .career-apply{
+    top:18px;
+    right:18px;
   }
 }

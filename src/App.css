@@ -1,0 +1,47 @@
+/* ============================= */
+/* BACK TO TOP */
+/* ============================= */
+.back-to-top{
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--glass-strong);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    color:var(--gold-500);
+    cursor:pointer;
+    z-index:998;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(16px);
+    transition:opacity .3s, transform .3s, visibility .3s, border-color .3s, box-shadow .3s;
+}
+.back-to-top.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+.back-to-top svg{
+    width:20px;
+    height:20px;
+}
+.back-to-top:hover{
+    border-color:var(--gold-500);
+    box-shadow:var(--glow-gold);
+    transform:translateY(-3px);
+}
+@media(max-width:600px){
+    .back-to-top{
+        right:18px;
+        bottom:18px;
+        width:44px;
+        height:44px;
+    }
+}

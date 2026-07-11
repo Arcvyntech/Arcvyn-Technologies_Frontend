@@ -132,7 +132,7 @@ function Contact() {
               <span className="contact-icon"><MailIcon /></span>
               <div>
                 <span className="contact-label">Email</span>
-                <span className="contact-value">hello@arcvyn.com</span>
+                <span className="contact-value">careers@arcvyn.com</span>
               </div>
             </li>
             <li>

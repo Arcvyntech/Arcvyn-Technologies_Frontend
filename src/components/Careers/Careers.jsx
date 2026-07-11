@@ -56,22 +56,69 @@ const UploadIcon = () => (
   </svg>
 );
 
-/* ── Role data ─────────────────────────────────────────── */
-const allRoles = [
-  { tag: "Engineering", title: "Software Developer", meta: "Full Stack · Remote · Full-time", type: "position" },
-  { tag: "Design", title: "UI/UX Designer", meta: "Design Team · Hybrid · Full-time", type: "position" },
-  { tag: "AI", title: "AI Engineer", meta: "ML · Remote · Full-time", type: "position", featured: true },
-  { tag: "Engineering", title: "Application Developer", meta: "Full Stack · Remote · Full-time", type: "position" },
+/* ── Rotating open positions ──────────────────────────────
+   A wider pool of roles. Every ROTATION_DAYS a new set of
+   ROLE_COUNT roles is picked from the pool, seeded by the
+   current date, so:
+   - it changes automatically on a schedule, no manual edits
+   - the same day always shows the same list (stable during a visit,
+     same list for every visitor within that window)
+   - some roles can repeat between windows just by chance, most won't
+   ────────────────────────────────────────────────────────── */
+const ROLE_POOL = [
+  { tag: "Engineering", title: "Software Developer", meta: "Full Stack · Remote · Full-time" },
+  { tag: "AI", title: "AI Engineer", meta: "ML · Remote · Full-time" },
+  { tag: "Design", title: "UI/UX Designer", meta: "Design Team · Hybrid · Full-time" },
+  { tag: "Engineering", title: "Application Developer", meta: "Full Stack · Remote · Full-time" },
+  { tag: "Engineering", title: "Backend Engineer", meta: "Infrastructure · Remote · Full-time" },
+  { tag: "Design", title: "Product Designer", meta: "Design Team · Remote · Full-time" },
+  { tag: "Engineering", title: "DevOps Engineer", meta: "Infrastructure · Remote · Full-time" },
+  { tag: "AI", title: "Data Engineer", meta: "ML · Remote · Full-time" },
+  { tag: "Design", title: "Motion Designer", meta: "Design Team · Hybrid · Full-time" },
+  { tag: "Engineering", title: "Mobile Developer", meta: "App Team · Remote · Full-time" },
+  { tag: "Engineering", title: "QA Engineer", meta: "Engineering · Hybrid · Full-time" },
+];
+
+const ROTATION_DAYS = 15;
+const ROLE_COUNT = 4;
+
+// small seeded PRNG so the "random" pick is deterministic per period
+function mulberry32(seed) {
+  return function () {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function getRotatingOpenPositions() {
+  const epochDay = Math.floor(Date.now() / 86400000);
+  const period = Math.floor(epochDay / ROTATION_DAYS);
+  const rand = mulberry32(period);
+
+  const pool = [...ROLE_POOL];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  return pool.slice(0, ROLE_COUNT).map((r) => ({
+    ...r,
+    type: "position",
+    featured: r.tag === "AI",
+  }));
+}
+
+const INTERNSHIPS = [
   { tag: "Internship", title: "Frontend Intern", meta: "3 months · Remote", type: "internship" },
-  { tag: "Internship", title: "Design Intern", meta: "3 months · Hybrid", type: "internship" },
   { tag: "HR", title: "HR Intern", meta: "3 months · Hybrid", type: "internship" },
   { tag: "Internship", title: "Content Writer Intern", meta: "3 months · Remote", type: "internship" },
   { tag: "Marketing", title: "Digital Marketing Intern", meta: "3 months · Hybrid", type: "internship" },
+  { tag: "Internship", title: "Full Stack Intern", meta: "3 months · Remote", type: "internship" },
+  { tag: "Internship", title: "Application Developer Intern", meta: "3 months · Remote", type: "internship" },
 ];
-
-const openPositions = allRoles.filter((r) => r.type === "position");
-const internships = allRoles.filter((r) => r.type === "internship");
-const remoteRoles = allRoles.filter((r) => r.meta.includes("Remote"));
 
 /* ── Role row ──────────────────────────────────────────── */
 function RoleRow({ role, index, onApply }) {
@@ -114,6 +161,12 @@ function SectionTitle({ icon, children }) {
 }
 
 export default function Careers() {
+  // computed once per mount; stable for the current 15-day window
+  const [openPositions] = useState(getRotatingOpenPositions);
+  const internships = INTERNSHIPS;
+  const allRoles = [...openPositions, ...internships];
+  const remoteRoles = allRoles.filter((r) => r.meta.includes("Remote"));
+
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [fileName, setFileName] = useState("");
@@ -167,10 +220,11 @@ export default function Careers() {
   };
 
   return (
-    <section className="careers">
+   
+    <section id="careers" className="careers">
 
       {/* HEADER */}
-      <div className="container careers-header">
+      <div className="careers-container careers-header">
         <div>
           <span className="eyebrow">Work With Us</span>
           <h2>
@@ -195,7 +249,7 @@ export default function Careers() {
       </div>
 
       {/* OPEN POSITIONS */}
-      <div className="container">
+      <div className="careers-container">
         <SectionTitle icon={<BriefcaseIcon />}>Open Positions</SectionTitle>
         <div className="career-list glass-card">
           {openPositions.map((j, i) => (
@@ -205,7 +259,7 @@ export default function Careers() {
       </div>
 
       {/* INTERNSHIPS */}
-      <div className="container">
+      <div className="careers-container">
         <SectionTitle icon={<CapIcon />}>Internship Opportunities</SectionTitle>
         <div className="career-list glass-card">
           {internships.map((j, i) => (
@@ -215,7 +269,7 @@ export default function Careers() {
       </div>
 
       {/* REMOTE OPPORTUNITIES */}
-      <div className="container">
+      <div className="careers-container">
         <SectionTitle icon={<HomeIcon />}>Remote Opportunities</SectionTitle>
         <p className="section-sub">
           {remoteRoles.length} of our {allRoles.length} open roles can be done
@@ -240,7 +294,7 @@ export default function Careers() {
       </div>
 
       {/* APPLICATION FORM */}
-      <div className="container" id="apply">
+      <div className="careers-container" id="apply">
         <SectionTitle icon={<MailIcon />}>Apply Now</SectionTitle>
 
         <div className="application-grid glass-card">

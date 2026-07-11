@@ -442,11 +442,6 @@
   transform:translateY(0);
 }
 
-/* ---------- Respect reduced motion, fully this time ----------
-   FIX: previously this query missed .pillar-card::before and
-   .beam-glow, so those two kept animating even when the user's
-   OS explicitly asked for reduced motion. Now everything
-   decorative + infinite is covered. */
 @media (prefers-reduced-motion: reduce){
   .pillar-card,
   .pillar-card::before,
@@ -459,5 +454,34 @@
     transition: none;
     opacity:1;
     transform:none;
+  }
+}
+@media (max-width:860px){
+  .about-section{
+    padding:80px 6% 90px;
+  }
+  .why-block{
+    margin-top:80px;
+  }
+  .thesis-card{
+    padding:36px 28px;
+  }
+  .thesis-text{
+    font-size:20px;
+  }
+}
+
+@media (max-width:480px){
+  .about-section{
+    padding:60px 5% 70px;
+  }
+  .thesis-card{
+    padding:28px 20px;
+  }
+  .pillar-card{
+    padding:30px 22px 28px;
+  }
+  .why-heading{
+    font-size:26px;
   }
 }

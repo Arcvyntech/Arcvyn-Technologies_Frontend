@@ -77,6 +77,25 @@ const ChevronIcon = () => (
     <path d="m6 9 6 6 6-6" />
   </svg>
 );
+const TrendUpIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M23 6 13.5 15.5l-5-5L1 18" />
+    <path d="M17 6h6v6" />
+  </svg>
+);
+const UsersIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+const ActivityIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+  </svg>
+);
 
 /* Each point carries a short "why it matters" line, revealed on
    demand — the row does more work without asking for more room. */
@@ -128,9 +147,9 @@ const supportingPoints = [
 const processSteps = ["Discovery", "Design", "Build", "Ship"];
 
 const metrics = [
-  { value: "95%", label: "Client Retention", sub: "clients return for their next project" },
-  { value: "99.9%", label: "System Uptime", sub: "across all production deployments" },
-  { value: "50%", label: "Faster Delivery", sub: "compared to industry average" },
+  { value: "95%", label: "Client Retention", sub: "clients return for their next project", accent: "gold", icon: <UsersIcon /> },
+  { value: "99.9%", label: "System Uptime", sub: "across all production deployments", accent: "teal", icon: <ActivityIcon /> },
+  { value: "50%", label: "Faster Delivery", sub: "compared to industry average", accent: "indigo", icon: <BoltIcon /> },
 ];
 
 /* ── Animation presets ─────────────────────────────────────── */
@@ -141,6 +160,18 @@ const fadeUp = (delay = 0, reduce = false) => {
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-60px" },
     transition: { duration: 0.5, delay, ease: [0.22, 0.61, 0.36, 1] },
+  };
+};
+
+/* Ruler mark under the header — draws left-to-right once, in place
+   of the removed "Fig. 01" label. */
+const drawRule = (delay = 0, reduce = false) => {
+  if (reduce) return {};
+  return {
+    initial: { scaleX: 0, opacity: 0 },
+    whileInView: { scaleX: 1, opacity: 1 },
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.6, delay, ease: [0.22, 0.61, 0.36, 1] },
   };
 };
 
@@ -220,7 +251,7 @@ const useSpotlight = (reduce) => {
    value); visual order — value first, big and bold — is handled by
    CSS `order`, so sighted and screen-reader users each get the right
    read on the same markup. */
-const Metric = ({ value, label, sub, index, shouldReduceMotion, spotlightProps }) => {
+const Metric = ({ value, label, sub, accent, icon, index, shouldReduceMotion, spotlightProps }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const display = useCountUp(value, inView, 1200, shouldReduceMotion);
@@ -230,11 +261,18 @@ const Metric = ({ value, label, sub, index, shouldReduceMotion, spotlightProps }
       className={`wcu-metric${inView ? " is-in-view" : ""}`}
       ref={ref}
       {...fadeUp(index * 0.08, shouldReduceMotion)}
+      whileHover={shouldReduceMotion ? {} : { y: -6, transition: { type: "spring", stiffness: 320, damping: 26 } }}
       {...spotlightProps}
     >
       <span className="wcu-spotlight" aria-hidden="true" />
+      <span className={`wcu-metric-icon accent-${accent}`} aria-hidden="true">{icon}</span>
       <dt className="wcu-metric-label">{label}</dt>
-      <dd className="wcu-metric-value">{display}</dd>
+      <dd className="wcu-metric-value">
+        {display}
+        <span className="wcu-metric-trend" aria-hidden="true">
+          <TrendUpIcon />
+        </span>
+      </dd>
       <dd className="wcu-metric-sub">{sub}</dd>
     </motion.div>
   );
@@ -256,17 +294,23 @@ function WhyChooseUs() {
 
   return (
     <section className="wcu" id="why-us" aria-labelledby="wcu-heading">
+      <div className="wcu-noise" aria-hidden="true" />
 
       {/* Header */}
       <div className="wcu-header">
         <div className="wcu-header-main">
           <motion.span className="wcu-eyebrow" {...fadeUp(0, shouldReduceMotion)}>
-            <span className="wcu-eyebrow-dash" aria-hidden="true" />
-            <span className="wcu-spec">§ 03</span> — Why ARCVYN
+            <span className="wcu-eyebrow-dot" aria-hidden="true" />
+            Why ARCVYN
           </motion.span>
           <motion.h2 id="wcu-heading" {...fadeUp(0.08, shouldReduceMotion)}>
             Built on trust, <em>proven by results.</em>
           </motion.h2>
+          <motion.span
+            className="wcu-header-rule"
+            aria-hidden="true"
+            {...drawRule(0.3, shouldReduceMotion)}
+          />
         </div>
         <motion.div className="wcu-header-aside" {...fadeUp(0.14, shouldReduceMotion)}>
           <p>
@@ -278,17 +322,18 @@ function WhyChooseUs() {
 
       {/* Featured approach + supporting list */}
       <div className="wcu-body">
-        <motion.div className="wcu-feature" {...fadeUp(0.1, shouldReduceMotion)} {...spotlightProps}>
+        <motion.div
+          className="wcu-feature"
+          {...fadeUp(0.1, shouldReduceMotion)}
+          whileHover={shouldReduceMotion ? {} : { y: -3, transition: { type: "spring", stiffness: 280, damping: 26 } }}
+          {...spotlightProps}
+        >
           <span className="wcu-spotlight" aria-hidden="true" />
           <span className="wcu-feature-corner wcu-feature-corner--tr" aria-hidden="true" />
           <span className="wcu-feature-corner wcu-feature-corner--bl" aria-hidden="true" />
 
-          <span className="wcu-feature-mark">
-            <span className="wcu-spec">Our approach</span>
-            <span className="wcu-feature-figref" aria-hidden="true">— Fig. 01</span>
-          </span>
-
           <div className="wcu-feature-icon-wrap">
+            <span className="wcu-feature-icon-glow" aria-hidden="true" />
             <div className="wcu-feature-icon" aria-hidden="true"><BlueprintIcon /></div>
             <span className="wcu-feature-trace" aria-hidden="true" />
           </div>
@@ -371,6 +416,8 @@ function WhyChooseUs() {
             value={m.value}
             label={m.label}
             sub={m.sub}
+            accent={m.accent}
+            icon={m.icon}
             index={i}
             shouldReduceMotion={shouldReduceMotion}
             spotlightProps={spotlightProps}

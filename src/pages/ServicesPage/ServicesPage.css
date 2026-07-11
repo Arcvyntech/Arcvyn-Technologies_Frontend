@@ -520,3 +520,14 @@
 @media (max-width: 480px) {
   .sp-modal-dialog { padding: 36px 24px; border-radius: 16px; }
 }
+@media (max-width:600px){
+  .sp-header{
+    margin-bottom: 56px;
+  }
+  .sp-header p{
+    font-size: 16px;
+  }
+  .sp-modal-overlay{
+    padding: 48px 16px 24px;
+  }
+}

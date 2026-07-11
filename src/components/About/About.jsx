@@ -76,7 +76,7 @@ export default function About() {
   const revealRefs = useRef([]);
   revealRefs.current = [];
 
-  // FIX: reveal animations are now opt-in. Content is fully visible by
+  // reveal animations are opt-in. Content is fully visible by
   // default (see about.css); this flag only *arms* the hidden/fade-in
   // state once React has actually mounted and can guarantee the
   // IntersectionObserver will run to bring it back. No-JS visitors,
@@ -110,7 +110,9 @@ export default function About() {
   }, []);
 
   return (
-    <section className={`about-section${revealArmed ? " reveal-armed" : ""}`}>
+    // CHANGE: added id="about" — the footer's "About" link scrolls to
+    // getElementById("about"), which didn't exist on this section before.
+    <section id="about" className={`about-section${revealArmed ? " reveal-armed" : ""}`}>
       <div className="about-container">
 
         <span className="about-eyebrow reveal-item" ref={addRevealRef}>
@@ -159,9 +161,6 @@ export default function About() {
             <h3 className="why-heading">Six reasons teams choose ARCVYN.</h3>
           </div>
 
-          {/* FIX: was a <div> of <div>s — now a real list, and each title
-              is an <h4> under the "Six reasons" <h3> so screen reader users
-              get correct heading hierarchy and item count. */}
           <ul className="pillars-grid">
             {PILLARS.map((pillar, i) => (
               <li
