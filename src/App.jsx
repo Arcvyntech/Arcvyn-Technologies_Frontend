@@ -4,7 +4,6 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home"; 
-import ServicesPage from "./pages/ServicesPage/ServicesPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,6 +37,9 @@ function BackToTopButton() {
   );
 }
 
+// NOTE: "/services" route removed — Services now lives as a section
+// directly on the Home page (see src/pages/Home.jsx), scroll-linked
+// from the Navbar the same way Careers already works.
 function AppContent() {
   return (
     <>
@@ -45,7 +47,6 @@ function AppContent() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<ServicesPage />} />
       </Routes>
       <Footer />
       <BackToTopButton />

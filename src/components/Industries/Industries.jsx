@@ -88,7 +88,7 @@ export default function Industries() {
     <section id="industries" className="industries">
       <div className="industries-container industries-header">
         <div>
-          <span className="eyebrow">What We Do</span>
+          
           <h2>
             Industries We <span className="gradient-text">Serve</span>
           </h2>

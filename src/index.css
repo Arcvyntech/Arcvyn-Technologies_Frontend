@@ -16,6 +16,7 @@
   --glass-strong:rgba(255,255,255,.07);
   --border:rgba(255,255,255,.08);
   --border-strong:rgba(255,255,255,.16);
+  color-scheme: dark;
 
   /* Brand */
   --gold-500:#F4B942;

@@ -226,7 +226,7 @@ export default function Careers() {
       {/* HEADER */}
       <div className="careers-container careers-header">
         <div>
-          <span className="eyebrow">Work With Us</span>
+        
           <h2>
             Build Your Future With <span className="gradient-text">ARCVYN</span>
           </h2>
@@ -308,7 +308,7 @@ export default function Careers() {
             </p>
 
             <button type="button" className="btn btn-outline" onClick={copyEmail}>
-              {copied ? <><CheckIcon /> Copied</> : <><MailIcon /> careers@arcvyn.com</>}
+              {copied ? <><CheckIcon /> Copied</> : <><MailIcon /> careers.arcvyntech@gmail.com</>}
             </button>
           </div>
 
@@ -326,11 +326,11 @@ export default function Careers() {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full name</label>
-                  <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+                  <input id="name" name="name" type="text" placeholder="Full Name" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="jane@email.com" required />
+                  <input id="email" name="email" type="email" placeholder="Email" required />
                 </div>
               </div>
 
@@ -352,7 +352,7 @@ export default function Careers() {
 
               <div className="form-group">
                 <label htmlFor="portfolio">Portfolio / LinkedIn (optional)</label>
-                <input id="portfolio" name="portfolio" type="url" placeholder="https://" />
+                <input id="portfolio" name="portfolio" type="url" placeholder="Url" />
               </div>
 
               <div className="form-group">

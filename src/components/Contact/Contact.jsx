@@ -132,21 +132,21 @@ function Contact() {
               <span className="contact-icon"><MailIcon /></span>
               <div>
                 <span className="contact-label">Email</span>
-                <span className="contact-value">careers@arcvyn.com</span>
+                <span className="contact-value">contact.arcvyntech@gmail.com</span>
               </div>
             </li>
             <li>
               <span className="contact-icon"><PhoneIcon /></span>
               <div>
                 <span className="contact-label">Phone</span>
-                <span className="contact-value">+1 (555) 010-0199</span>
+                <span className="contact-value">6396947861</span>
               </div>
             </li>
             <li>
               <span className="contact-icon"><PinIcon /></span>
               <div>
                 <span className="contact-label">Location</span>
-                <span className="contact-value">Remote-first, worldwide</span>
+                <span className="contact-value">Haldwani,Uttrakhand-263139</span>
               </div>
             </li>
           </ul>
@@ -172,7 +172,7 @@ function Contact() {
             <input
               id="contact-name"
               type="text"
-              placeholder="Jordan Lee"
+              placeholder="Full Name"
               required
               value={formData.name}
               onChange={updateField("name")}
@@ -185,7 +185,7 @@ function Contact() {
               <input
                 id="contact-email"
                 type="email"
-                placeholder="jordan@company.com"
+                placeholder="email-id"
                 required
                 value={formData.email}
                 onChange={updateField("email")}
@@ -196,7 +196,7 @@ function Contact() {
               <input
                 id="contact-phone"
                 type="tel"
-                placeholder="+1 (555) 000-0000"
+                placeholder="+91"
                 value={formData.phone}
                 onChange={updateField("phone")}
               />

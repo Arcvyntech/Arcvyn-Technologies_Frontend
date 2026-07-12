@@ -1,350 +1,290 @@
-/* ============================= */
-/* SERVICES SECTION (homepage teaser) */
-/* ============================= */
-.services-section{
-    position:relative;
-    overflow:hidden;
-}
-.services-section::before{
-    content:"";
-    position:absolute;
-    top:-10%;
-    right:-10%;
-    width:560px;
-    height:560px;
-    background:radial-gradient(circle, rgba(244,185,66,.10), transparent 70%);
-    pointer-events:none;
-    z-index:0;
-}
-.services-section::after{
-    content:"";
-    position:absolute;
-    bottom:-15%;
-    left:-10%;
-    width:480px;
-    height:480px;
-    background:radial-gradient(circle, rgba(94,230,208,.08), transparent 70%);
-    pointer-events:none;
-    z-index:0;
-}
-.services-section .container{
-    position:relative;
-    z-index:1;
+.services{
+  /* rhythm break, same idea as Industries: this section sits on
+     --bg-surface so it reads as a step forward from the sections
+     around it, instead of a flat, endless black */
+  background:var(--bg-surface);
+  padding:110px 0;
+  color:var(--text-primary);
 }
 
-/* ============================= */
-/* HEADER */
-/* ============================= */
+.services-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 40px;
+}
+
+@media(max-width:560px){
+  .services-container{
+    padding:0 20px;
+  }
+}
+
+/* HEADER — same pattern as Careers/Industries headers */
 .services-header{
-    max-width:640px;
-    margin:0 0 64px;
+  margin-bottom:56px;
 }
-.services-eyebrow{
-    margin-bottom:20px;
-}
+
 .services-header h2{
-    margin-bottom:20px;
-}
-.services-subtext{
-    max-width:520px;
+  font-size:var(--fs-h2);
+  margin-top:10px;
 }
 
-/* ============================= */
-/* BENTO GRID
-   Named areas instead of an even N-column grid, so 4 tiles always
-   fill the full rectangle exactly — no dangling empty cells like a
-   plain repeat(4,1fr) leaves when the item count doesn't divide evenly.
-
-   ┌──────────────┬─────────┬─────────┐
-   │              │  web    │ mobile  │
-   │   feature    ├─────────┴─────────┤
-   │              │        wide       │
-   └──────────────┴───────────────────┘
-============================= */
-.services-bento{
-    display:grid;
-    grid-template-columns:1.15fr 1fr 1fr;
-    grid-template-rows:auto auto;
-    grid-template-areas:
-        "feature web    mobile"
-        "feature wide   wide";
-    gap:1px;
-    background:var(--border);
-    border:1px solid var(--border);
-    border-radius:var(--radius-lg);
-    overflow:hidden;
+.services-header p{
+  color:var(--text-secondary);
+  max-width:560px;
+  line-height:1.7;
+  margin-top:16px;
 }
 
-@media (max-width:900px){
-    .services-bento{
-        grid-template-columns:1fr;
-        grid-template-areas:
-            "feature"
-            "web"
-            "mobile"
-            "wide";
-    }
+/* GRID */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:20px;
 }
 
-/* ============================= */
-/* SHARED TILE STYLING */
-/* ============================= */
-.service-tile{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    padding:38px 34px 34px;
-    background-color:var(--bg-primary);
-    overflow:hidden;
-    transition:background-color .4s ease;
-}
-.service-tile:hover{
-    background-color:var(--bg-surface);
+@media(max-width:1100px){
+  .services-grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
 }
 
-.service-tile.accent-gold{ --accent:var(--gold-500); }
-.service-tile.accent-teal{ --accent:var(--teal-400); }
-.service-tile.accent-indigo{ --accent:var(--indigo-400); }
-
-/* Single deliberate hover cue per tile: the accent hairline draws in
-   from the left. Kept restrained on purpose — this section previously
-   had every card animating multiple ways at once. */
-.service-tile::before{
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%;
-    height:2px;
-    background:var(--accent);
-    transform:scaleX(0);
-    transform-origin:left;
-    transition:transform .5s cubic-bezier(.19,1,.22,1);
-}
-.service-tile:hover::before{
-    transform:scaleX(1);
+@media(max-width:560px){
+  .services-grid{
+    grid-template-columns:1fr;
+  }
 }
 
-.service-icon-wrap{
-    width:48px;
-    height:48px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--bg-surface-2);
-    border:1px solid var(--border);
-    margin-bottom:22px;
-    color:var(--accent);
-    transition:border-color .4s ease;
+/* CARD — same shape/hover language as .industry-card / .career-row,
+   just with the extra kicker + feature-list content this section needs.
+   Grid rows already stretch every card to the same height automatically;
+   these min-heights make the *content* line up card-to-card too, so a
+   short title/description doesn't leave things sitting at a different
+   vertical position than a longer one next to it. */
+.service-card{
+  padding:30px 26px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  position:relative;
+  height:100%;
 }
-.service-tile:hover .service-icon-wrap{
-    border-color:var(--accent);
+
+.service-index{
+  position:absolute;
+  top:26px;
+  right:26px;
+  font-size:12px;
+  color:var(--text-muted);
 }
+
 .service-icon{
-    width:22px;
-    height:22px;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  color:var(--accent, var(--gold-500));
+  background:color-mix(in srgb, var(--accent, var(--gold-500)) 14%, transparent);
 }
 
-.service-title{
-    font-size:19px;
-    margin-bottom:10px;
-    letter-spacing:-.3px;
-}
-.service-desc{
-    font-size:14.5px;
-    line-height:1.7;
-    color:var(--text-secondary);
-    max-width:38ch;
+.service-icon svg{
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
-/* ============================= */
-/* FEATURED TILE — the section's one visual signature: three offset
-   bars suggesting layered, custom-built systems (vs. one-size-fits-all
-   templates), matching what "Custom Software Development" actually
-   means rather than decorating for its own sake. */
-/* ============================= */
-.tile-feature{
-    grid-area:feature;
-    padding:0;
+.service-kicker-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-/* Compact, self-contained "editor window" mockup — sized to its own
-   content instead of a fixed height, so it never leaves dead space
-   above the icon/title below it. */
-.tile-feature-visual{
-    align-self:stretch;
-    margin:28px 34px 0;
-    padding:16px 16px 18px;
-    border-radius:var(--radius-sm);
-    background:var(--bg-surface-2);
-    border:1px solid var(--border);
+.service-kicker{
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent, var(--gold-500));
 }
 
-.mock-window{
-    display:flex;
-    gap:6px;
-    margin-bottom:14px;
-}
-.mock-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--text-muted);
-    opacity:.4;
+.service-card h3{
+  font-size:18px;
+  line-height:1.3;
+  height:2.6em;         /* fixed — always room for 2 lines, whether the title needs 1 or 2 */
+  overflow:hidden;
+  display:flex;
+  align-items:flex-start;
 }
 
-.mock-lines{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-.mock-line{
-    display:block;
-    height:8px;
-    border-radius:4px;
-    background:var(--border-strong);
-    transform-origin:left;
-    transition:transform .6s cubic-bezier(.19,1,.22,1), background .4s ease;
-}
-.mock-line-accent{
-    background:linear-gradient(90deg, var(--gold-500), rgba(244,185,66,.3));
+.service-card p{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.7;
+  margin:0;
+  height:6.8em;         /* fixed — always room for 4 lines, so shorter descriptions
+                           don't let the checklist/button creep up */
+  overflow:hidden;
 }
 
-.tile-feature:hover .mock-line{
-    transform:scaleX(1.03);
+.service-feature-list{
+  list-style:none;
+  margin:0;
+  padding:14px 0 0;
+  border-top:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:9px;
 }
 
-.tile-feature-body{
-    padding:24px 34px 34px;
+.service-feature-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:12.5px;
+  color:var(--text-secondary);
+  line-height:1.5;
 }
 
-.tile-feature .service-title{
-    font-size:25px;
-    max-width:16ch;
+.service-feature-list li svg{
+  flex:none;
+  width:12px;
+  height:12px;
+  margin-top:3px;
+  stroke:var(--accent, var(--gold-500));
 }
 
-.tile-feature .service-desc{
-    max-width:34ch;
+.service-cta{
+  margin-top:auto;
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--text-primary);
+  font-weight:600;
+  font-size:13px;
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
 }
 
-/* ============================= */
-/* WIDE TILE (AI Solutions) — horizontal layout, icon beside copy */
-/* ============================= */
-.tile-wide{
-    grid-area:wide;
-    flex-direction:row;
-    align-items:flex-start;
-    gap:22px;
+.service-cta svg{
+  width:13px;
+  height:13px;
+  stroke:var(--accent, var(--gold-500));
+  transition:var(--transition);
 }
 
-.tile-wide .service-icon-wrap{
-    margin-bottom:0;
-    flex-shrink:0;
+.service-card:hover .service-cta svg{
+  transform:translateX(4px);
 }
 
-.tile-wide-body{
-    min-width:0;
-}
-
-.tile-wide-head{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:10px;
-    flex-wrap:wrap;
-}
-
-.tile-wide-head .service-title{
-    margin-bottom:0;
-}
-
-.service-tag{
-    font-size:10.5px;
-    font-weight:600;
-    letter-spacing:.6px;
-    text-transform:uppercase;
-    padding:5px 10px;
-    border-radius:var(--radius-pill);
-    color:var(--gold-500);
-    background:rgba(244,185,66,.12);
-    border:1px solid rgba(244,185,66,.25);
-    white-space:nowrap;
-}
-
-@media (max-width:560px){
-    .tile-wide{
-        flex-direction:column;
-    }
-}
-
-/* ============================= */
-/* FOOTER CTA */
-/* ============================= */
-.services-footer{
-    display:flex;
-    justify-content:center;
-    margin-top:52px;
-}
-
-.services-view-all{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-}
-
-.services-view-all svg{
-    width:16px;
-    height:16px;
-    transition:transform .3s ease;
-}
-
-.services-view-all:hover svg{
-    transform:translateX(4px);
-}
-
-/* ============================= */
-/* STAGGERED ENTRANCE (extends .fade-up from global css) */
-/* ============================= */
-.services-bento .fade-up{
-    transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.19,1,.22,1);
-}
-
-@media (prefers-reduced-motion: reduce){
-    .service-tile::before,
-    .mock-line{
-        transition:none;
-    }
-}
-@media (max-width:600px){
+@media(max-width:560px){
+  .services{
+    padding:70px 0;
+  }
   .services-header{
-    margin-bottom:44px;
+    margin-bottom:36px;
   }
-  .service-tile{
-    padding:28px 22px 26px;
-  }
-  .tile-feature-visual{
-    margin:22px 22px 0;
-  }
-  .tile-feature-body{
-    padding:20px 22px 28px;
-  }
-  .tile-feature .service-title{
-    font-size:21px;
-  }
-  .services-footer{
-    margin-top:36px;
+  .service-card{
+    padding:24px 22px;
   }
 }
 
-@media (max-width:400px){
-  .service-tile{
-    padding:24px 18px 22px;
+/* ============================================================
+   MODAL — restyled with the site's existing surface/border/gold
+   tokens instead of the old blue theme, and reuses .form-group /
+   .btn classes already defined globally so inputs and buttons
+   look identical to the Careers apply form.
+   ============================================================ */
+.services-modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(4,6,12,.72);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:80px 24px 24px;
+  z-index:100;
+  overflow-y:auto;
+}
+
+.services-modal-dialog{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  background:var(--bg-surface-2);
+  padding:44px;
+  border-radius:var(--radius-lg);
+}
+
+.services-modal-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:36px;
+  height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:50%;
+  color:var(--text-primary);
+  cursor:pointer;
+  transition:var(--transition);
+}
+.services-modal-close svg{ width:14px; height:14px; }
+.services-modal-close:hover{
+  background:rgba(244,185,66,.08);
+  border-color:var(--gold-500);
+}
+
+.services-modal-dialog h3{
+  font-size:22px;
+  line-height:1.3;
+  margin:10px 0 10px;
+}
+
+.services-modal-subtext{
+  color:var(--text-secondary);
+  line-height:1.6;
+  margin-bottom:26px;
+}
+
+.services-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.services-modal-error{
+  color:var(--danger);
+  font-size:13px;
+  margin-top:-8px;
+}
+
+.services-modal-success{
+  padding-top:4px;
+}
+
+.services-modal-success .btn{
+  margin-top:12px;
+}
+
+@media(max-width:560px){
+  .services-modal-overlay{
+    padding:48px 16px 24px;
   }
-  .service-icon-wrap{
-    width:42px;
-    height:42px;
+  .services-modal-dialog{
+    padding:30px 24px;
   }
 }
