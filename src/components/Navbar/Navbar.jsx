@@ -7,6 +7,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [careersActive, setCareersActive] = useState(false);
   const [servicesActive, setServicesActive] = useState(false);
+  const [aboutActive, setAboutActive] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,6 +60,19 @@ function Navbar() {
     return () => io.disconnect();
   }, [location.pathname]);
 
+  // same scroll-spy treatment for About — section (#about) on the home page.
+  useEffect(() => {
+    const target = document.getElementById("about");
+    if (!target) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => setAboutActive(entry.isIntersecting),
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    io.observe(target);
+    return () => io.disconnect();
+  }, [location.pathname]);
+
   // close mobile menu whenever a link is clicked
   const closeMenu = () => setMenuOpen(false);
 
@@ -104,6 +118,20 @@ function Navbar() {
     }
   };
 
+  // About lives on the home page too — same pattern as Services/Careers
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    closeMenu();
+    if (location.pathname === "/") {
+      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+      }, 150);
+    }
+  };
+
   return (
     <nav className={`navbar${scrolled ? " navbar-scrolled" : ""}`}>
       <div className="nav-container">
@@ -115,15 +143,17 @@ function Navbar() {
         <ul className="nav-links">
           <li>
             {/* CHANGE: className is now a function so Home's own active
-                state can be suppressed while careersActive/servicesActive
-                is true — otherwise multiple links would show the
-                underline at once, since the URL never actually leaves "/". */}
+                state can be suppressed while careersActive/servicesActive/
+                aboutActive is true — otherwise multiple links would show
+                the underline at once, since the URL never actually leaves "/". */}
             <NavLink
               to="/"
               end
               onClick={goHome}
               className={({ isActive }) =>
-                isActive && !careersActive && !servicesActive ? "active" : ""
+                isActive && !careersActive && !servicesActive && !aboutActive
+                  ? "active"
+                  : ""
               }
             >
               Home
@@ -145,6 +175,15 @@ function Navbar() {
               onClick={scrollToCareers}
             >
               Careers
+            </a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              className={aboutActive ? "active" : ""}
+              onClick={scrollToAbout}
+            >
+              About
             </a>
           </li>
         </ul>
@@ -170,7 +209,9 @@ function Navbar() {
               end
               onClick={goHome}
               className={({ isActive }) =>
-                isActive && !careersActive && !servicesActive ? "active" : ""
+                isActive && !careersActive && !servicesActive && !aboutActive
+                  ? "active"
+                  : ""
               }
             >
               Home
@@ -192,6 +233,15 @@ function Navbar() {
               onClick={scrollToCareers}
             >
               Careers
+            </a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              className={aboutActive ? "active" : ""}
+              onClick={scrollToAbout}
+            >
+              About
             </a>
           </li>
         </ul>

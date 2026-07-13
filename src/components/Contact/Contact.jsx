@@ -139,7 +139,7 @@ function Contact() {
               <span className="contact-icon"><PhoneIcon /></span>
               <div>
                 <span className="contact-label">Phone</span>
-                <span className="contact-value">6396947861</span>
+                <span className="contact-value">+91-6396947861</span>
               </div>
             </li>
             <li>
@@ -185,7 +185,7 @@ function Contact() {
               <input
                 id="contact-email"
                 type="email"
-                placeholder="email-id"
+                placeholder="Email-id"
                 required
                 value={formData.email}
                 onChange={updateField("email")}
