@@ -125,7 +125,7 @@ export default function About() {
         </h2>
 
         <p className="about-sub reveal-item" ref={addRevealRef}>
-          ARCVYN partners with businesses ready to outgrow their tools — building
+          ARCVYN partners with businesses ready to outgrow their tools building
           the technology that turns transformation into a repeatable advantage.
         </p>
 

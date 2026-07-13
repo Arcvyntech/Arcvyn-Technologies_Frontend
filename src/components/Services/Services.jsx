@@ -12,7 +12,7 @@ const services = [
     title: 'Custom Software Development',
     accent: '#6E8CFF',
     description:
-      'Software built around how your business actually runs — scalable, secure, and fast from the first release.',
+      'Software built around how your business actually runs scalable, secure, and fast from the first release.',
     features: [
       'Requirements & systems architecture',
       'Scalable backend engineering',
@@ -28,9 +28,9 @@ const services = [
     title: 'Web Development',
     accent: '#4FD1C5',
     description:
-      'Fast, resilient, pixel-precise web products — engineered for performance from the first paint.',
+      'Fast, resilient, pixel-precise web products engineered for performance from the first paint.',
     features: [
-      'Performance-first front-end builds',
+      'Performance first front-end builds',
       'CMS & headless integrations',
       'Cross-browser, accessibility tested',
     ],
@@ -44,10 +44,10 @@ const services = [
     title: 'Mobile App Development',
     accent: '#E8925C',
     description:
-      'Native-grade iOS and Android experiences with fluid interactions and a release pipeline built for continuous shipping.',
+      'Native grade iOS and Android experiences with fluid interactions and a release pipeline built for continuous shipping.',
     features: [
       'Native iOS & Android builds',
-      'Offline-first sync architecture',
+      'Offline first sync architecture',
       'App Store & Play Store releases',
     ],
     icon: (
@@ -61,7 +61,7 @@ const services = [
     accent: '#A78BFA',
     badge: 'AI-Powered',
     description:
-      'Production-ready AI features — from copilots to automation pipelines — designed to integrate cleanly with your existing stack and data.',
+      'Production-ready AI features from copilots to automation pipelines designed to integrate cleanly with your existing stack and data.',
     features: [
       'LLM copilots & chat interfaces',
       'Workflow & document automation',
@@ -77,7 +77,7 @@ const services = [
     title: 'SaaS Products',
     accent: '#F5B94D',
     description:
-      'From zero to first paying customer — multi-tenant architecture, billing, and onboarding designed to hold up at scale.',
+      'From zero to first paying customer multi-tenant architecture, billing, and onboarding designed to hold up at scale.',
     features: [
       'Multi-tenant architecture',
       'Subscription billing & metering',
@@ -109,7 +109,7 @@ const services = [
     title: 'UI/UX Design',
     accent: '#F27F9E',
     description:
-      'Interfaces designed around real user behaviour — wireframes to polished, tested screens your team can ship with confidence.',
+      'Interfaces designed around real user behaviour wireframes to polished, tested screens your team can ship with confidence.',
     features: [
       'User research & journey mapping',
       'Wireframes to hi-fi prototypes',
@@ -231,12 +231,12 @@ const Services = () => {
     <section id="services" className="services">
       <div className="services-container services-header">
         <div>
-          
+          <span className="eyebrow">What We Do</span>
           <h2>
             Professional services, <span className="gradient-text">built to scale.</span>
           </h2>
           <p>
-            ARCVYN partners with growing businesses to design, build, and run
+            ARCVYN partners with growing businesses to design build, and run
             the software and AI systems behind their next stage of growth.
           </p>
         </div>

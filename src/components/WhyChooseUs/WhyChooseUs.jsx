@@ -119,13 +119,13 @@ const supportingPoints = [
     icon: <ScaleIcon />,
     title: "Scalable Architecture",
     desc: "Architecture decisions are made for the business you're growing into, not just the one you have today.",
-    detail: "Fewer rewrites later — the data model and infrastructure are sized for growth from day one.",
+    detail: "Fewer rewrites later the data model and infrastructure are sized for growth from day one.",
   },
   {
     accent: "gold",
     icon: <ShieldIcon />,
     title: "Secure Systems",
-    desc: "Protections are part of the foundation, reviewed at every stage — never a patch added after launch.",
+    desc: "Protections are part of the foundation, reviewed at every stage never a patch added after launch.",
     detail: "Threat modeling happens during design, not the week before launch.",
   },
   {
@@ -133,7 +133,7 @@ const supportingPoints = [
     icon: <SupportIcon />,
     title: "Dedicated Support",
     desc: "The people who built it are the ones who answer when you call after launch.",
-    detail: "No hand-off to a separate support desk — the engineers who wrote it fix it.",
+    detail: "No hand off to a separate support desk the engineers who wrote it fix it.",
   },
   {
     accent: "indigo",
@@ -315,7 +315,7 @@ function WhyChooseUs() {
         <motion.div className="wcu-header-aside" {...fadeUp(0.14, shouldReduceMotion)}>
           <p>
             We combine strategy, craft, and engineering discipline into a
-            single practice — so nothing is lost in the handoff between them.
+            single practice so nothing is lost in the handoff between them.
           </p>
         </motion.div>
       </div>
@@ -341,7 +341,7 @@ function WhyChooseUs() {
           <h3>One team, start to finish</h3>
           <p>
             Strategy, design, and engineering sit in the same room from day
-            one — so the plan that gets approved is the plan that ships, not
+            one so the plan that gets approved is the plan that ships, not
             a rough sketch lost in translation.
           </p>
 

@@ -100,9 +100,9 @@ function Hero() {
             variants={item}
           >
             We empower businesses with scalable web applications,
-            enterprise software, AI-powered solutions and digital
+            enterprise software, AI powered solutions and digital
             experiences that help brands innovate, grow and lead in
-            today's technology-driven world.
+            today's technology driven world.
           </motion.p>
 
           {/* CTA — "Get Started" removed. "Book Demo" is now the single

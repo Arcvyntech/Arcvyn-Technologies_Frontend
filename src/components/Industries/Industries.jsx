@@ -51,7 +51,7 @@ const INDUSTRIES = [
   {
     icon: <CapIcon />,
     title: "Education (ERP)",
-    desc: "End-to-end ERP systems for institutions — admissions, attendance, fees, and academics in one platform.",
+    desc: "End-to-end ERP systems for institutions admissions, attendance, fees, and academics in one platform.",
   },
   {
     icon: <HeartPulseIcon />,
@@ -67,13 +67,13 @@ const INDUSTRIES = [
   {
     icon: <RocketIcon />,
     title: "Startups",
-    desc: "MVPs and lean product builds that help early-stage teams ship fast and validate quickly.",
+    desc: "MVPs and lean product builds that help early stage teams ship fast and validate quickly.",
     accent: true,
   },
   {
     icon: <WorkflowIcon />,
     title: "Business Automation",
-    desc: "Custom tools and integrations that remove manual work from day-to-day operations.",
+    desc: "Custom tools and integrations that remove manual work from day to day operations.",
   },
   {
     icon: <CodeIcon />,
@@ -93,7 +93,7 @@ export default function Industries() {
             Industries We <span className="gradient-text">Serve</span>
           </h2>
           <p>
-            From institutions to fast-moving startups — we build software
+            From institutions to fast moving startups we build software
             tailored to how each industry actually operates.
           </p>
         </div>

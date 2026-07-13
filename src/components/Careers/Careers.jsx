@@ -226,13 +226,13 @@ export default function Careers() {
       {/* HEADER */}
       <div className="careers-container careers-header">
         <div>
-        
+        <span className="eyebrow">Work With Us</span>
           <h2>
             Build Your Future With <span className="gradient-text">ARCVYN</span>
           </h2>
           <p>
             Join a fast-moving, globally distributed team building modern
-            AI-powered digital products — wherever you happen to be based.
+            AI powered digital products wherever you happen to be based.
           </p>
         </div>
 
@@ -303,7 +303,7 @@ export default function Careers() {
               Don&rsquo;t see the <span className="gradient-text">right role?</span>
             </h3>
             <p>
-              Send your details anyway — we keep every application on file
+              Send your details anyway we keep every application on file
               and reach out the moment something matches.
             </p>
 
@@ -316,7 +316,7 @@ export default function Careers() {
             <div className="form-success" role="status">
               <span className="form-success-icon" aria-hidden="true"><CheckIcon /></span>
               <h4>Application received</h4>
-              <p>Thanks for reaching out — our team will get back to you within a few days.</p>
+              <p>Thanks for reaching out our team will get back to you within a few days.</p>
               <button type="button" className="btn btn-outline" onClick={() => setSubmitted(false)}>
                 Submit another
               </button>
